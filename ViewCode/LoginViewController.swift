@@ -11,13 +11,17 @@ import UIKit
 class LoginViewController: UIViewController {
     
     override func loadView() {
-        view = LoginView()
+        view = LoginView(delegate: self)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
     
-    
+}
+
+extension LoginViewController: LoginViewDelegate {
+    func buttonClicked() {
+        print("Botão clicado")
+    }
 }

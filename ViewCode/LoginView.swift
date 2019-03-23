@@ -8,8 +8,14 @@
 
 import UIKit
 
+protocol LoginViewDelegate: class {
+    func buttonClicked()
+}
+
 class LoginView: UIView {
 
+    weak var delegate: LoginViewDelegate?
+    
     let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -52,7 +58,8 @@ class LoginView: UIView {
         return button
     }()
     
-    init() {
+    init(delegate: LoginViewDelegate) {
+        self.delegate = delegate
         super.init(frame: .zero)
         setup()
     }
@@ -79,5 +86,11 @@ extension LoginView: CodeView {
     
     func setupExtraConfiguration() {
         backgroundColor = .white
+        button.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
+    }
+    
+    @objc
+    func buttonClicked() {
+        delegate?.buttonClicked()
     }
 }
