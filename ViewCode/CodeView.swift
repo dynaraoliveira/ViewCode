@@ -7,3 +7,18 @@
 //
 
 import Foundation
+
+protocol CodeView {
+    func setupComponents()
+    func setupConstraints()
+    func setupExtraConfiguration()
+    func setup()
+}
+
+extension CodeView {
+    func setup() {
+        setupComponents()
+        setupConstraints()
+        setupExtraConfiguration()
+    }
+}
